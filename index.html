@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node js 04  Mensaje Secreto</title>
+</head>
+<body>
+    <script> 
+    function decifrar() {
+        let textoCifrado = document.getElementById("texto").value;
+        let textoPorDecifrar = "";
+        let textoDecifrado = ""; 
+        for(let i = 0; i < textoCifrado.length; i++) {
+            if(textoCifrado[i] == "(") { 
+                let inicioSubcadena = i;
+                while(inicioSubcadena < textoCifrado.length && textoCifrado[inicioSubcadena] != ")") {
+                    textoPorDecifrar += textoCifrado[inicioSubcadena];
+                    inicioSubcadena++;
+                }
+                i = inicioSubcadena;
+                for(let j = textoPorDecifrar.length - 1; j >= 0; j--) { 
+                    if(textoPorDecifrar[j] != "(" && textoPorDecifrar[j] != ")") {
+                        textoDecifrado += textoPorDecifrar[j];
+                    }
+                } 
+                textoPorDecifrar = "";
+            } else {
+                textoDecifrado += textoCifrado[i];
+            }
+        }
+        alert(textoDecifrado);
+    }
+    </script>
+    Texto: <input type="text" id="texto">
+    <button onclick="decifrar()">Convertir Texto</button>
+
+</body>
+</html>
